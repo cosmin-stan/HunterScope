@@ -79,3 +79,16 @@ I have added a few default ones based on my own preferences, but you can edit or
 
 In addition to the {val} placeholder, there is also {b64}, which automatically Base64-encodes the selected text (useful for tools like CyberChef that expect Base64 input).
 
+# 🔧 Installation (Developer / from Source)
+
+1. Clone or download this repository.
+
+2. In Chrome / Edge / Brave, open:
+chrome://extensions
+
+3. Enable Developer mode.
+
+4. Click Load unpacked and select the folder with HunterScope content.
+
+The extension should appear in your toolbar.
+
