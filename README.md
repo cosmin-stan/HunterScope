@@ -47,6 +47,8 @@ It **does not appear** for:
 
 ## 🖱 Right-click Context Menu
 
+![Animation2](https://github.com/user-attachments/assets/45d891f3-07d5-4da7-8442-09f0c913eb64)
+
 In addition to the bubble, HunterScope offers a configurable **right-click menu**.
 
 When you right-click on a selection, link, or page, you’ll see:
@@ -62,3 +64,18 @@ Each category provides:
 The right-click path still fully supports `url` mode (e.g. full URL scanners) even though the bubble focuses only on IP/domain/hash.
 
 ---
+
+## ⚙️ Configuration & Modes
+
+Open the Options page:
+
+- `chrome://extensions` → **HunterScope** → **Details** → **Extension options**  
+  (or left click the pinned extension icon)
+
+<img width="1424" height="1081" alt="image" src="https://github.com/user-attachments/assets/c50891a7-b4e3-4d94-b32d-82051133692b" />
+
+Here you can configure all OSINT analyzer categories.
+I have added a few default ones based on my own preferences, but you can edit or replace them as you like.
+
+In addition to the {val} placeholder, there is also {b64}, which automatically Base64-encodes the selected text (useful for tools like CyberChef that expect Base64 input).
+
