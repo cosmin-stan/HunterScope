@@ -9,7 +9,7 @@ Its main feature is a **hover bubble** that appears when you select an IOC (IP, 
 
 The **hover bubble** is the primary way to use HunterScope.
 
-![Animation](https://github.com/user-attachments/assets/ab2d1273-5b5a-460e-9f59-bc2fb553585d)
+![Animation3](https://github.com/user-attachments/assets/dd5510c5-85e9-4ee2-ac16-281a29aa9447)
 
 ### How it works
 
