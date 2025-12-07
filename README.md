@@ -1,4 +1,4 @@
-# HunterScope – IOC Enricher for Security Analysts
+# HunterScope – IOC Enricher for Security Analysts (fully customizeble)
 
 HunterScope is a Chromium-based browser extension that lets you quickly pivot from logs, EDR consoles or tickets into your favourite **OSINT / enrichment tools**.
 Its main feature is a **hover bubble** that appears when you select an IOC (IP, domain, hash) and lets you enrich it in a single click. Classic right-click context menus and a fully configurable backend sit behind it.
@@ -9,7 +9,7 @@ Its main feature is a **hover bubble** that appears when you select an IOC (IP, 
 
 The **hover bubble** is the primary way to use HunterScope.
 
-
+![Animation](https://github.com/user-attachments/assets/ab2d1273-5b5a-460e-9f59-bc2fb553585d)
 
 ### How it works
 
@@ -44,3 +44,21 @@ It **does not appear** for:
 
 - Plain URLs where you want to decide the context yourself (you still have the right-click menus).
 - Random sentences, usernames, or arbitrary text.
+
+## 🖱 Right-click Context Menu
+
+In addition to the bubble, HunterScope offers a configurable **right-click menu**.
+
+When you right-click on a selection, link, or page, you’ll see:
+
+- A top-level **HunterScope** entry.
+- Under it, your configured **categories** (e.g. `IP`, `Domain`, `Hash`, `URL`, `CyberChef`, etc.).
+
+Each category provides:
+
+- **Open in all** – opens the IOC in all providers configured for that category.
+- **Single provider entries** – open only that specific tool.
+
+The right-click path still fully supports `url` mode (e.g. full URL scanners) even though the bubble focuses only on IP/domain/hash.
+
+---
