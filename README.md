@@ -38,8 +38,7 @@ The bubble **only appears** when the selected text, after refanging, is:
 - ✅ An **IP address**  
   - Including defanged: `8[.]8[.]8[.]8`
 - ✅ A **domain name**  
-  - Including defanged: `example[.]com`, or from a defanged URL like:  
-    `hxxps[:]//example[.]com/path`
+  - Including defanged: `example[.]com`
 - ✅ A **hash**  
   - Hex-only string with common hash lengths (e.g., 32, 40, 64 chars)
 
@@ -56,17 +55,15 @@ It **does not appear** for:
 
 In addition to the bubble, HunterScope offers a configurable **right-click menu**.
 
-When you right-click on a selection, link, or page, you’ll see:
+When you right-click on a selection you’ll see:
 
 - A top-level **HunterScope** entry.
-- Under it, your configured **categories** (e.g. `IP`, `Domain`, `Hash`, `URL`, `CyberChef`, etc.).
+- Under it, your configured **categories** (e.g. `IP`, `Domain`, `Hash`, `CyberChef`, etc.).
 
 Each category provides:
 
 - **Open in all** – opens the IOC in all providers configured for that category.
 - **Single provider entries** – open only that specific tool.
-
-The right-click path still fully supports `url` mode (e.g. full URL scanners) even though the bubble focuses only on IP/domain/hash.
 
 ---
 
