@@ -62,11 +62,6 @@ const DEFAULT_CATEGORIES = [
           {id:"HASH_ANYRUN", name:"ANY.RUN", url:"https://app.any.run/submissions/#filehash:{val}"},
           {id:"HASH_OTX", name:"OTX (File)", url:"https://otx.alienvault.com/indicator/file/{val}"}
   ]},
-  { id:"URL", name:"URL", mode:"url", items:[
-          {id:"URL_VT", name:"VirusTotal (URL)", url:"https://www.virustotal.com/gui/url/{val}"},
-          {id:"URL_URLSCAN", name:"urlscan.io", url:"https://urlscan.io/result/{val}"},
-          {id:"URL_URLHAUS", name:"URLHaus", url:"https://urlhaus.abuse.ch/browse.php?search={val}"}
-  ]},
   { id:"CyberChef", name:"CyberChef", mode:"raw", items:[
     {id:"CyberChef_ParseUserAgent", name:"Parse User Agent", url:"https://gchq.github.io/CyberChef/#recipe=Parse_User_Agent()&input={b64}"},
     {id:"CyberChef_ExtractEmail", name:"Extract E-mail Addresses", url:"https://gchq.github.io/CyberChef/#recipe=Extract_email_addresses()&input={b64}"},
