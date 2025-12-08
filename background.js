@@ -58,7 +58,7 @@ const DEFAULT_CATEGORIES = [
           {id:"HASH_VT", name:"VirusTotal (File)", url:"https://www.virustotal.com/gui/file/{val}"},
           {id:"HASH_MALWAREBAZAAR", name:"MalwareBazaar", url:"https://bazaar.abuse.ch/browse.php?search=hash:{val}"},
           {id:"HASH_HYBRID", name:"Hybrid Analysis", url:"https://www.hybrid-analysis.com/search?query={val}"},
-          {id:"HASH_JOE", name:"Joe Sandbox", url:"https://www.joesandbox.com/search?q={val}"},
+          {id:"HASH_JOE", name:"Joe Sandbox", url:"https://www.joesandbox.com/analysis/search?q={val}"},
           {id:"HASH_ANYRUN", name:"ANY.RUN", url:"https://app.any.run/submissions/#filehash:{val}"},
           {id:"HASH_OTX", name:"OTX (File)", url:"https://otx.alienvault.com/indicator/file/{val}"}
   ]},
