@@ -10,7 +10,9 @@ Additionally, it offers a configurable **right-click menu**.
 
 The **hover bubble** is the primary way to use HunterScope.
 
-![Animation3](https://github.com/user-attachments/assets/dd5510c5-85e9-4ee2-ac16-281a29aa9447)
+<img width="1127" height="256" alt="image" src="https://github.com/user-attachments/assets/be458d2d-9989-4393-837a-06fad57a4706" />
+
+![Animation4](https://github.com/user-attachments/assets/a0389826-8571-4618-a479-a5c15d47b442)
 
 ### How it works
 
@@ -47,6 +49,8 @@ It **does not appear** for:
 - Random sentences, usernames, or arbitrary text.
 
 ## 🖱 Right-click Context Menu
+
+<img width="1518" height="649" alt="image" src="https://github.com/user-attachments/assets/b5e4c95e-a414-44a6-a1d9-bb71f94e79e8" />
 
 ![Animation2](https://github.com/user-attachments/assets/45d891f3-07d5-4da7-8442-09f0c913eb64)
 
