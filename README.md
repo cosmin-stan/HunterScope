@@ -74,7 +74,7 @@ Open the Options page:
 - `chrome://extensions` → **HunterScope** → **Details** → **Extension options**  
   (or left click the pinned extension icon)
 
-<img width="1424" height="1081" alt="image" src="https://github.com/user-attachments/assets/c50891a7-b4e3-4d94-b32d-82051133692b" />
+<img width="1689" height="1150" alt="image" src="https://github.com/user-attachments/assets/dedee709-b4a7-4ca4-9e02-5406c23e1a14" />
 
 Here you can configure all OSINT analyzer categories.
 I have added a few default ones based on my own preferences, but you can edit or replace them as you like.
