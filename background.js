@@ -35,40 +35,44 @@ function pickInfo(info){
   return { sel, url, host, token };
 }
 
-const DEFAULT_CATEGORIES=[
+const DEFAULT_CATEGORIES = [
   { id:"IP", name:"IP", mode:"ip", items:[
-    {id:"IP_VT", name:"VirusTotal (IP)", url:"https://www.virustotal.com/gui/ip-address/{val}"},
-    {id:"IP_ABUSEIPDB", name:"AbuseIPDB", url:"https://www.abuseipdb.com/check/{val}"},
-    {id:"IP_GREYNOISE", name:"GreyNoise", url:"https://viz.greynoise.io/ip/{val}"},
-    {id:"IP_URLSCAN", name:"urlscan (IP)", url:"https://urlscan.io/search/#ip:{val}"},
-    {id:"IP_TALOS", name:"Cisco Talos", url:"https://talosintelligence.com/reputation_center/lookup?search={val}"},
-    {id:"IP_SECURITYTRAILS", name:"SecurityTrails (IP)", url:"https://securitytrails.com/list/ip/{val}"},
-    {id:"IP_SHODAN", name:"Shodan", url:"https://www.shodan.io/host/{val}"},
-    {id:"IP_OTX", name:"OTX (IP)", url:"https://otx.alienvault.com/indicator/ip/{val}"}
+          {id:"IP_VT", name:"VirusTotal (IP)", url:"https://www.virustotal.com/gui/ip-address/{val}"},
+          {id:"IP_ABUSEIPDB", name:"AbuseIPDB", url:"https://www.abuseipdb.com/check/{val}"},
+          {id:"IP_GREYNOISE", name:"GreyNoise", url:"https://viz.greynoise.io/ip/{val}"},
+          {id:"IP_URLSCAN", name:"urlscan (IP)", url:"https://urlscan.io/search/#ip:{val}"},
+          {id:"IP_IPQUALITY", name:"IPQS", url:"https://www.ipqualityscore.com/free-ip-lookup-proxy-vpn-test/lookup/{val}"},
+          {id:"IP_THREATFOX", name:"Threat Fox", url:"https://threatfox.abuse.ch/browse.php?search=ioc%3A{val}"},
+          {id:"IP_SHODAN", name:"Shodan", url:"https://www.shodan.io/host/{val}"},
+          {id:"IP_OTX", name:"OTX (IP)", url:"https://otx.alienvault.com/indicator/ip/{val}"},
+          {id:"IP_URLQUERY", name:"UrlQuery", url:"https://urlquery.net/search?q={val}&view=&type=reports"}
   ]},
   { id:"DOMAIN", name:"Domain", mode:"domain", items:[
-    {id:"DOM_VT", name:"VirusTotal (Domain)", url:"https://www.virustotal.com/gui/domain/{val}"},
-    {id:"DOM_URLSCAN", name:"urlscan (Domain)", url:"https://urlscan.io/search/#domain:{val}"},
-    {id:"DOM_TALOS", name:"Cisco Talos", url:"https://talosintelligence.com/reputation_center/lookup?search={val}"},
-    {id:"DOM_SECURITYTRAILS", name:"SecurityTrails", url:"https://securitytrails.com/domain/{val}"},
-    {id:"DOM_OTX", name:"OTX (Domain)", url:"https://otx.alienvault.com/indicator/domain/{val}"},
-    {id:"DOM_CRTSH", name:"crt.sh (certs)", url:"https://crt.sh/?q={val}"},
-    {id:"DOM_DNSTWIST", name:"dnstwist (web)", url:"https://dnstwist.it/{val}"}
+          {id:"DOM_VT", name:"VirusTotal (Domain)", url:"https://www.virustotal.com/gui/domain/{val}"},
+          {id:"DOM_URLSCAN", name:"urlscan (Domain)", url:"https://urlscan.io/search/#domain:{val}"},
+          {id:"DOM_URLQUERY", name:"Cisco Url Query", url:"https://urlquery.net/search?q={val}&view=&type=reports"},
+          {id:"DOM_SYMANTEC", name:"Symantec", url:"https://sitereview.bluecoat.com/#/lookup-result/{val}"},
+          {id:"DOM_OTX", name:"OTX (Domain)", url:"https://otx.alienvault.com/indicator/domain/{val}"}
   ]},
   { id:"HASH", name:"Hash", mode:"hash", items:[
-    {id:"HASH_VT", name:"VirusTotal (File)", url:"https://www.virustotal.com/gui/file/{val}"},
-    {id:"HASH_MALWAREBAZAAR", name:"MalwareBazaar", url:"https://bazaar.abuse.ch/browse.php?search=hash:{val}"},
-    {id:"HASH_HYBRID", name:"Hybrid Analysis", url:"https://www.hybrid-analysis.com/search?query={val}"},
-    {id:"HASH_JOE", name:"Joe Sandbox", url:"https://www.joesandbox.com/search?q={val}"},
-    {id:"HASH_ANYRUN", name:"ANY.RUN", url:"https://app.any.run/submissions/#filehash:{val}"},
-    {id:"HASH_THREATFOX", name:"ThreatFox", url:"https://threatfox.abuse.ch/browse.php?search=hash:{val}"},
-    {id:"HASH_OTX", name:"OTX (File)", url:"https://otx.alienvault.com/indicator/file/{val}"}
+          {id:"HASH_VT", name:"VirusTotal (File)", url:"https://www.virustotal.com/gui/file/{val}"},
+          {id:"HASH_MALWAREBAZAAR", name:"MalwareBazaar", url:"https://bazaar.abuse.ch/browse.php?search=hash:{val}"},
+          {id:"HASH_HYBRID", name:"Hybrid Analysis", url:"https://www.hybrid-analysis.com/search?query={val}"},
+          {id:"HASH_JOE", name:"Joe Sandbox", url:"https://www.joesandbox.com/search?q={val}"},
+          {id:"HASH_ANYRUN", name:"ANY.RUN", url:"https://app.any.run/submissions/#filehash:{val}"},
+          {id:"HASH_OTX", name:"OTX (File)", url:"https://otx.alienvault.com/indicator/file/{val}"}
   ]},
   { id:"URL", name:"URL", mode:"url", items:[
-    {id:"URL_VT", name:"VirusTotal (URL)", url:"https://www.virustotal.com/gui/url/{val}"},
-    {id:"URL_URLSCAN", name:"urlscan.io", url:"https://urlscan.io/result/{val}"},
-    {id:"URL_PHISHTANK", name:"PhishTank", url:"https://www.phishtank.com/search.php?query={val}"},
-    {id:"URL_URLHAUS", name:"URLHaus", url:"https://urlhaus.abuse.ch/browse.php?search={val}"}
+          {id:"URL_VT", name:"VirusTotal (URL)", url:"https://www.virustotal.com/gui/url/{val}"},
+          {id:"URL_URLSCAN", name:"urlscan.io", url:"https://urlscan.io/result/{val}"},
+          {id:"URL_URLHAUS", name:"URLHaus", url:"https://urlhaus.abuse.ch/browse.php?search={val}"}
+  ]},
+  { id:"CyberChef", name:"CyberChef", mode:"raw", items:[
+    {id:"CyberChef_ParseUserAgent", name:"Parse User Agent", url:"https://gchq.github.io/CyberChef/#recipe=Parse_User_Agent()&input={b64}"},
+    {id:"CyberChef_ExtractEmail", name:"Extract E-mail Addresses", url:"https://gchq.github.io/CyberChef/#recipe=Extract_email_addresses()&input={b64}"},
+    {id:"CyberChef_ExtractDomains", name:"Extract Domains", url:"https://gchq.github.io/CyberChef/#recipe=Extract_domains()&input={b64}"},
+    {id:"CyberChef_ExtractIPs", name:"Extract IPs", url:"https://gchq.github.io/CyberChef/#recipe=Extract_IP_addresses()&input={b64}"},
+    {id:"CyberChef_Decodeb64", name:"Decode B64", url:"https://gchq.github.io/CyberChef/#recipe=From_Base64('A-Za-z0-9+/=',true,false)&input={val}"}
   ]}
 ];
 
