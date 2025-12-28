@@ -3,7 +3,6 @@
   let currentText = "";
   let hideTimer = null;
 
-  // Auto-highlight settings (stored in chrome.storage.local)
   let hlSettings = {
     enabled: true,
     domains: true,
@@ -29,7 +28,6 @@
         cb && cb();
       });
     }catch(e){
-      // If storage isn't available for some reason, default to enabled
       cb && cb();
     }
   }
@@ -48,20 +46,15 @@
   const RE_IPv4_BUB = /^(?:\d{1,3}\.){3}\d{1,3}$/;
   const RE_IPv6_BUB = /^[0-9a-f:]+$/i;
   const RE_DOMAIN_BUB = /^(?=.{1,253}$)(?!-)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$/i;
-  // CVE format is CVE-YYYY-NNNN... (numeric part is 4+ digits; no fixed upper bound)
   const RE_CVE_BUB = /^CVE-(?:19|20)\d{2}-\d{4,}$/i;
   const RE_CVE_FIND = /\bCVE-(?:19|20)\d{2}-\d{4,}\b/i;
 
-  // Avoid false positives like "loader.exe" being treated as a domain.
-  // We only block extensions that are NOT valid TLDs (exe/dll/etc).
   const HS_BLOCKED_PSEUDO_TLDS = new Set([
     "exe","dll","msi","msp","bat","cmd","ps1","psm1","vbs","vbe","js","jse","wsf","wsh",
     "scr","cpl","sys","drv","jar","apk","ipa","dmg","pkg","deb","rpm","iso","img","bin",
     "zip","rar"
   ]);
 
-  // Avoid false positives like AV/EDR detection names being treated as domains
-  // e.g. "Trojan.Generic", "InfoStealer.Win.MythStealer", etc.
   const HS_BLOCKED_DOMAIN_PREFIXES = new Set([
     "trojan","worm","backdoor","virus","malware","ransomware","spyware","adware","riskware",
     "hacktool","pua","pup","unwanted","grayware","infostealer","stealer","keylogger",
@@ -70,7 +63,6 @@
 
   function normalizeDomainToken(s){
     if(!s) return "";
-    // strip common trailing punctuation
     return s.trim().replace(/[\]\)\}\>,;:!?\.]+$/g, "");
   }
 
@@ -78,7 +70,7 @@
     const raw = normalizeDomainToken((s||""));
     const v = raw.toLowerCase();
     if(!v) return false;
-    if(v.includes("@")) return false; // emails
+    if(v.includes("@")) return false; 
     const parts = v.split(".");
     if(parts.length < 2) return false;
     const first = parts[0];
@@ -103,17 +95,16 @@ function guessModeForBubble(raw){
   const v = refangBubble(raw.trim());
   if (!v) return "raw";
 
-  // 1) Hash wins first
+
   if (looksLikeHashBubble(v)) return "hash";
 
-  // 1b) CVE
+
   if (RE_CVE_FIND.test(v)) return "cve";
 
-  // 2) Try to get the host / base token
+
   let base = v;
   try {
     if (/^https?:\/\//i.test(v)) {
-      // If it's a URL (even defanged originally), extract hostname
       const u = new URL(v);
       base = u.hostname;
     } else {
@@ -125,7 +116,6 @@ function guessModeForBubble(raw){
 
   base = normalizeDomainToken(base);
 
-  // 3) IP or domain on the host/base
   if (RE_IPv4_BUB.test(base) || RE_IPv6_BUB.test(base)) return "ip";
   if (RE_DOMAIN_BUB.test(base) && isLikelyDomainToken(base)) return "domain";
 
@@ -326,14 +316,9 @@ function ensureBubble() {
     hideBubble();
   });
 
-  // ------------------------------------------------------------
-  // Auto-highlight (domains, IPs, hashes)
-  // ------------------------------------------------------------
-
   const HS_IOC_CLASS = "hunterscope-ioc";
   const HS_STYLE_ID = "hunterscope-ioc-style";
 
-  // Candidate regexes are intentionally broad; we validate after refanging.
   const RE_HASH_CAND = /\b[a-fA-F0-9]{32,128}\b/g;
   const RE_IPV4_CAND = /\b(?:\d{1,3}(?:\.|\[\.\]|\(\.\))){3}\d{1,3}\b/g;
   const RE_IPV6_CAND = /\b(?:(?:[0-9A-Fa-f]{0,4}:){2,7}[0-9A-Fa-f]{0,4}|::(?:[0-9A-Fa-f]{0,4}:){0,6}[0-9A-Fa-f]{0,4})\b/g;
@@ -393,7 +378,6 @@ function ensureBubble() {
     const v = (ip||"").trim();
     if (!v || v.length < 2) return false;
     try{
-      // URL parsing validates IPv6 when bracketed
       new URL(`http://[${v}]/`);
       return true;
     }catch(e){
@@ -424,7 +408,6 @@ function ensureBubble() {
       }
       for (const m of text.matchAll(RE_IPV6_CAND)){
         const raw = m[0];
-        // Avoid highlighting times like "12:34" by requiring at least 2 colons
         if ((raw.match(/:/g) || []).length < 2) continue;
         if (!isValidIPv6(raw)) continue;
         matches.push({ start: m.index, end: m.index + raw.length, text: raw, mode: "ip" });
@@ -444,7 +427,6 @@ function ensureBubble() {
     if (hlSettings.cves){
       for (const m of text.matchAll(RE_CVE_CAND)){
         const raw = m[0];
-        // Normalize to canonical uppercase CVE-YYYY-NNNN...
         const v = raw.toUpperCase();
         if (!RE_CVE_BUB.test(v)) continue;
         matches.push({ start: m.index, end: m.index + raw.length, text: raw, mode: "cve" });
@@ -453,7 +435,6 @@ function ensureBubble() {
 
     if (!matches.length) return matches;
 
-    // Sort + de-overlap (prefer hash > ip > domain)
     const prio = { cve: 4, hash: 3, ip: 2, domain: 1 };
     matches.sort((a,b)=> (a.start - b.start) || (b.end - a.end) || (prio[b.mode]-prio[a.mode]) );
 
@@ -462,7 +443,6 @@ function ensureBubble() {
       const last = out[out.length-1];
       if (!last){ out.push(m); continue; }
       if (m.start >= last.end){ out.push(m); continue; }
-      // overlap: keep the one that starts earlier; if same start, keep longer/higher prio
       if (m.start === last.start){
         const lastLen = last.end - last.start;
         const mLen = m.end - m.start;
@@ -563,7 +543,6 @@ function ensureBubble() {
     obs.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
-  // Hover -> show bubble on highlighted IOCs
   document.addEventListener("mouseover", (ev) => {
     const el = ev.target && ev.target.closest ? ev.target.closest(`.${HS_IOC_CLASS}`) : null;
     if (!el) return;
@@ -576,13 +555,11 @@ function ensureBubble() {
   document.addEventListener("mouseout", (ev) => {
     const from = ev.target && ev.target.closest ? ev.target.closest(`.${HS_IOC_CLASS}`) : null;
     if (!from) return;
-    // If moving into the bubble, don't hide
     const toEl = ev.relatedTarget;
     if (toEl && bubbleEl && (toEl === bubbleEl || (toEl.closest && toEl.closest("#hunterscope-bubble")))) return;
     scheduleHideBubble(200);
   }, true);
 
-  // Keep bubble visible while hovering it
   document.addEventListener("mouseover", (ev) => {
     if (ev.target && ev.target.closest && ev.target.closest("#hunterscope-bubble")) cancelHideBubble();
   }, true);
