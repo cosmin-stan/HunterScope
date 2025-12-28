@@ -5,13 +5,11 @@ function refang(s){
   if(!s) return s;
   let v = s.trim();
 
-  // defang -> fang
-  v = v.replace(/\[\s*\.\s*\]/g, ".");   // [.]  -> .
-  v = v.replace(/\(\s*\.\s*\)/g, ".");   // (.)  -> .
-  v = v.replace(/\[\s*:\s*\]/g, ":");    // [:]  -> :
-  v = v.replace(/\s+dot\s+/gi, ".");     // ' dot ' -> .
+  v = v.replace(/\[\s*\.\s*\]/g, ".");
+  v = v.replace(/\(\s*\.\s*\)/g, ".");  
+  v = v.replace(/\[\s*:\s*\]/g, ":");    
+  v = v.replace(/\s+dot\s+/gi, ".");     
 
-  // hxxp / hxxps -> http/https
   v = v.replace(/^hxxps:\/\//i, "https://");
   v = v.replace(/^hxxp:\/\//i, "http://");
 
@@ -21,7 +19,6 @@ function refang(s){
 const RE_IPv4=/^(?:\d{1,3}\.){3}\d{1,3}$/;
 const RE_IPv6=/^[0-9a-f:]+$/i;
 const RE_DOMAIN=/^(?=.{1,253}$)(?!-)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}$/i;
-// CVE format is CVE-YYYY-NNNN... (numeric part is 4+ digits; no fixed upper bound)
 const RE_CVE=/^CVE-(?:19|20)\d{2}-\d{4,}$/i;
 const RE_MD5=/^[a-f0-9]{32}$/i, RE_SHA1=/^[a-f0-9]{40}$/i, RE_SHA256=/^[a-f0-9]{64}$/i;
 
@@ -135,13 +132,10 @@ function guessModeFromText(raw){
   const v = refang(raw.trim());
   if (!v) return "raw";
 
-  // 1) Hash first
   if (looksLikeHash(v)) return "hash";
 
-  // 1b) CVE
   if (/\bCVE-(?:19|20)\d{2}-\d{4,}\b/i.test(v)) return "cve";
 
-  // 2) Extract a base token / host
   let base = v;
   try {
     if (/^https?:\/\//i.test(v)) {
@@ -154,7 +148,6 @@ function guessModeFromText(raw){
     base = v.split(/[\s/]/)[0];
   }
 
-  // 3) IP or domain on host/base
   if (RE_IPv4.test(base) || RE_IPv6.test(base)) return "ip";
   if (RE_DOMAIN.test(base)) return "domain";
 
