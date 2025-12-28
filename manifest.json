@@ -23,12 +23,6 @@
       "16": "icons/16.png",
       "32": "icons/32.png",
       "48": "icons/48.png"
-   },
-   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAz6jBFZcc1R6VBXUPUp0KEdTkvoWDWIVOK3/hEqSFZkzv6F9G9VHg6su6x5FmcM/Mpnf9gn7tPwQocyfcSv5TsoBIC4aBoYKHIXW4sjSDSveWzUxQatrhXU/LkMCiDBOCM88pi9BhwR0jBv8YDnIB+N906OELduI0Srfa1IY4BORHy8/uPfUVUZqiqMbe/4mn9v0pwWfpnkjMjVd2zNohMfg+/Cfm777WwtlBH7LLalat2DOOQ3H2x9iAOHkmT1bbA6YW7FafNPqJPbuO2H6xHLYb1JoFyGElJAk3iQyps8pZMcvHmygZlddLiVENNipnUTm5kvXdlFLDU6Xue07i4QIDAQAB",
-   "manifest_version": 3,
-   "name": "HunterScope",
-   "options_page": "options.html",
-   "permissions": [ "contextMenus", "storage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "2.0.0"
+   }
 }
+
