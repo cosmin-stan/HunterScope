@@ -87,7 +87,7 @@ function loadCategories(){
 
 async function getOpenInNewWindow(){
   const res = await chrome.storage.local.get(["openInNewWindow"]);
-  return !!res.openInNewWindow;
+return res.openInNewWindow !== false;
 }
 
 function openTargets(urls, openInNewWindow){
