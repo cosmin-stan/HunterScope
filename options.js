@@ -68,7 +68,7 @@ function load(){
   ]}
       ];
     }
-    openInNewWindowEl.checked = !!res.openInNewWindow;
+   openInNewWindowEl.checked = res.openInNewWindow !== false;
 
     // Auto-highlight defaults: enabled + all types
     autoHighlightEl.checked = res.autoHighlightEnabled !== false;
