@@ -1,6 +1,6 @@
 # HunterScope – IOC Enricher for Security Analysts (fully customizable)
 
-HunterScope is a Chromium-based browser extension that lets you quickly pivot from logs, EDR consoles or tickets into your favourite **OSINT / enrichment tools**.
+HunterScope is a Chromium-based browser extension that lets you quickly pivot from logs, EDR consoles or tickets into your favorite **OSINT / enrichment tools**.
 Its core feature is a smart hover bubble that automatically detects IPs, domains, and hashes on any webpage. The extension highlights these IOCs, allowing you to hover over them and pivot to your favorite OSINT tools in a single click.
 Additionally, it offers a configurable **right-click menu**.
 
